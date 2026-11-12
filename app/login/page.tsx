@@ -3,8 +3,14 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import Button from '../components/Button';
 
 export default function Login() {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+  }
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState<string | null>(null)
@@ -80,12 +86,12 @@ export default function Login() {
           </div>
 
           <div className="flex items-center justify-between text-sm">
-            <button
+            <Button
               type="submit"
-              className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-college disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Masuk
-            </button>
+              loading={loading}
+              teks="Masuk"
+              teksLoading="proses bosku..."
+            />
           </div>
 
           <div className="text-center mt-4">

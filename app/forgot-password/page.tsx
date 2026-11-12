@@ -3,8 +3,14 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import Button from '../components/Button';
 
 export default function ForgotPassword() {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+  }
+
   const [email, setEmail] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
@@ -94,13 +100,12 @@ export default function ForgotPassword() {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-college disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Mengirim..." : "Kirim Tautan Reset"}
-          </button>
+            loading={loading}
+            teks="Kirim Tautan Reset"
+            teksLoading="Mengirim..."
+          />
         </form>
 
         <div className="text-center mt-6">

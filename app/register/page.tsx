@@ -3,8 +3,17 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import Button from '../components/Button';
+
+
+
 
 export default function Register() {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+  }
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -38,6 +47,8 @@ export default function Register() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="bg-white rounded-2xl shadow-2xl p-8 text-center max-w-md">
+
+
           <Image
             src="/next.svg"
             alt="Success"
@@ -139,13 +150,12 @@ export default function Register() {
             />
           </div>
 
-          <button
+          <Button
             type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-college disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Mendaftar..." : "Daftar"}
-          </button>
+            loading={loading}
+            teks="Daftar"
+            teksLoading="Mendaftar..."
+          />
         </form>
 
         <div className="text-center mt-6">
